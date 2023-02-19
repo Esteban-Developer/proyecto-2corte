@@ -9,7 +9,7 @@ Para poder utilizar este proyecto es necesario tener instalado en tu ordenador l
 
 ## Instalación
 - Clona este repositorio en tu ordenador:
-git clone https://github.com/tu-usuario/proyecto-php.git
+git clone https://github.com/JeniferGomez/CRUD-y-Sistema-de-Login-en-PHP.git
 - Crea una base de datos en MySQL.
 - Importa el archivo database.sql a tu base de datos recién creada.
 - Configura los datos de tu base de datos en el archivo config.php.
