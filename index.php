@@ -9,15 +9,11 @@
     <title>Login y Register </title>
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png">
     <link rel="stylesheet" type="text/css" href="assets/css/login_regist.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 <body>
-
         <main>
-
             <div class="contenedor__todo">
                 <div class="caja__trasera">
                     <div class="caja__trasera-login">
@@ -31,7 +27,6 @@
                         <button id="btn__registrarse">Regístrarse</button>
                     </div>
                 </div>
-
                 <!--Formulario de Login y registro-->
                 <div class="contenedor__login-register">
                     <!--Login-->
@@ -42,19 +37,17 @@
                         <button>Entrar</button>
                         <a href="recuperar_contraseña.php" id="olvidar" title="Recuperar Clave">¿Olvidaste tu contraseña?</a>
                     </form>
-
                     <!--Register-->
                     <form action="php/registro_usuario_be.php" method="POST" class="formulario__register">
                         <h2>Regístrarse</h2>
                         <input type="text" placeholder="Nombre completo" name="fullName" required autocomplete="off"/>
                         <input type="email" placeholder="Correo Electronico" name="email" required autocomplete="off"/>
+                        <input type="password" placeholder="Contraseña" name="contrasena" required autocomplete="off"/>
                         <button>Regístrarse</button>
                     </form>
                 </div>
             </div>
-
         </main>
-
         <script src="assets/js/script.js"></script>
 </body>
 </html>

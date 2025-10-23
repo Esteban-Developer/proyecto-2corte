@@ -19,22 +19,23 @@ class Administrator extends db{
 		return $this->view_users();
 	}
 
-	private function register_users($data){
-		try {
-			$SQL = 'INSERT INTO users (name_user,last_name_user,email_user) VALUES (?,?,?)';
-			$result = $this->connect()->prepare($SQL);
-			$result->execute(array(
-									$data['name'],
-									$data['last_name'],
-									$data['email']
-									)
-							);			
-		} catch (Exception $e) {
-			die('Error Administrator(register_users) '.$e->getMessage());
-		} finally{
-			$result = null;
-		}
+private function register_users($data){
+	try {
+		$SQL = 'INSERT INTO users (name_user, last_name_user, email_user, contrasena) VALUES (?,?,?,?)';
+		$result = $this->connect()->prepare($SQL);
+		$result->execute(array(
+			$data['name'],
+			$data['last_name'],
+			$data['email'],
+			$data['password'] 
+		));
+	} catch (Exception $e) {
+		die('Error Administrator(register_users) '.$e->getMessage());
+	} finally {
+		$result = null;
 	}
+}
+
 
 	function set_register_user($data){
 		$this->register_users($data);
