@@ -2,8 +2,8 @@
 
 class db {
     protected function connect() {
-        // Detectar si está en Docker o en local
-        $host = getenv("DB_HOST") ?: "localhost";
+        // Detectar
+        $host = getenv("DB_HOST") ?: "db";
         $dbname = getenv("DB_NAME") ?: "crud";
         $user = getenv("DB_USER") ?: "root";
         $pass = getenv("DB_PASSWORD") ?: "yes";
