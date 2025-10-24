@@ -7,20 +7,22 @@ class db {
         $user = getenv("DB_USER") ?: "root";
         $pass = getenv("DB_PASSWORD") ?: "yes";
 
-        // Se agrega el puerto y desactivamos SSL para evitar el error de certificado
-        $dsn = "mysql:host=$host;port=3306;dbname=$dbname;charset=utf8mb4";
+        // Forzar la conexión sin SSL
+        $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+
+        $options = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+            PDO::MYSQL_ATTR_SSL_CA => null,
+        ];
 
         $maxRetries = 10;
         while ($maxRetries-- > 0) {
             try {
-                $connect = new PDO($dsn, $user, $pass, [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
-                    PDO::MYSQL_ATTR_SSL_CA => null,
-                ]);
+                $connect = new PDO($dsn, $user, $pass, $options);
                 return $connect;
             } catch (PDOException $e) {
-                echo "Esperando conexión con MySQL...\n";
+                echo "Esperando conexión con MySQL...<br>";
                 sleep(2);
             }
         }
