@@ -6,7 +6,8 @@ $db   = getenv("DB_NAME") ?: "crud";
 
 $retries = 10;
 while ($retries > 0) {
-    $conexion = @mysqli_connect($host, $user, $pass, $db);
+    $conexion = @mysqli_connect($host, $user, $pass, $db, 3306);
+
     if ($conexion) break;
     $retries--;
     echo "Esperando conexión con MySQL...\n";
