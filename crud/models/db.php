@@ -2,19 +2,22 @@
 
 class db {
     protected function connect() {
-        // Detectar
         $host = getenv("DB_HOST") ?: "db";
         $dbname = getenv("DB_NAME") ?: "crud";
         $user = getenv("DB_USER") ?: "root";
         $pass = getenv("DB_PASSWORD") ?: "yes";
 
-        $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+        // Se agrega el puerto y desactivamos SSL para evitar el error de certificado
+        $dsn = "mysql:host=$host;port=3306;dbname=$dbname;charset=utf8mb4";
 
-        $maxRetries = 10; // reintentos para esperar que MySQL arranque
+        $maxRetries = 10;
         while ($maxRetries-- > 0) {
             try {
-                $connect = new PDO($dsn, $user, $pass);
-                $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $connect = new PDO($dsn, $user, $pass, [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+                    PDO::MYSQL_ATTR_SSL_CA => null,
+                ]);
                 return $connect;
             } catch (PDOException $e) {
                 echo "Esperando conexión con MySQL...\n";
@@ -22,7 +25,6 @@ class db {
             }
         }
 
-        // Si después de varios intentos no logra conectar, muestra error
         die("Error db(connect): " . $e->getMessage());
     }
 }
